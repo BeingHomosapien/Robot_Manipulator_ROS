@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot name="mrm" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:include filename="$(find mrm_description)/urdf/macro_joints_links.xacro"/>
+    <xacro:include filename="$(find mrm_description)/urdf/robo_params.xacro"/>
+
+    <m_link_box name="${bl}" origin_rpy="0 0 0" origin_xyz="0 0 0" mass="1024"
+                ixx="170.667" iyy="170.667" izz="170.667" ixy="0" iyz="0" ixz="0"
+                size="1 1 1" color="red"/>
+    <gazebo reference="${bl}">
+        <material>Gazebo/Red</material>
+    </gazebo>
+
+    <m_joint name="${bl}_${l1}" type="revolute" origin_rpy="0 0 0" origin_xyz="0 0 0.5"
+             parent="${bl}" child="${l1}" axis="0 0 1" limite="1000" limitl="-3.14" 
+             limitu="3.14" limitv="0.5"/>
+
+    <m_link_cylinder name="${l1}" origin_rpy="0 0 0" origin_xyz="0 0 0.2" mass="157.633"
+                     ixx="13.25" iyy="13.235" izz="9.655" ixy="0" iyz="0" ixz="0" 
+                     radius="0.35" length="0.4" color="blue"/>
+    <gazebo reference="${l1}">
+        <material>Gazebo/Blue</material>
+    </gazebo>
+    
+    <m_joint name="${l1}_${l2}" type="revolute" origin_rpy="0 0 0" origin_xyz="0 0 0.4"
+             parent="${l1}" child="${l2}" axis="0 1 0" limite="1000" limitl="-3.14" 
+             limitu="3.14" limitv="0.5"/>
+
+    <m_link_cylinder name="${l2}" origin_rpy="0 0 0" origin_xyz="0 0 0.4" mass="57.906"
+                     ixx="12.679" iyy="12.679" izz="0.651" ixy="0" iyz="0" ixz="0" 
+                     radius="0.15" length="0.8" color="red"/>
+    <gazebo reference="${l2}">
+        <material>Gazebo/Red</material>
+    </gazebo>
+
+    <m_joint name="${l2}_${l3}" type="revolute" origin_rpy="0 0 0" origin_xyz="0 0 0.8"
+             parent="${l2}" child="${l3}" axis="0 1 0" limite="1000" limitl="-3.14" 
+             limitu="3.14" limitv="0.5"/>
+
+    <m_link_cylinder name="${l3}" origin_rpy="0 0 0" origin_xyz="0 0 0.4"  mass="57.906"
+                     ixx="12.679" iyy="12.679" izz="0.651" ixy="0" iyz="0" ixz="0"
+                     radius="0.15" length="0.8" color="blue"/>
+    <gazebo reference="${l3}">
+        <material>Gazebo/Blue</material>
+    </gazebo>
+
+    <m_joint name="${l3}_${l4}" type="revolute" origin_rpy="0 0 0" origin_xyz="0 0 0.8"
+             parent="${l3}" child="${l4}" axis="0 1 0" limite="1000" limitl="-3.14" 
+             limitu="3.14" limitv="0.5"/>
+
+    <m_link_cylinder name="${l4}" origin_rpy="0 0 0" origin_xyz="0 0 0.4" mass="57.906"
+                     ixx="12.679" iyy="12.679" izz="0.651" ixy="0" iyz="0" ixz="0"
+                     radius="0.15" length="0.8" color="red"/>
+    <gazebo reference="${l4}">
+        <material>Gazebo/Blue</material>
+    </gazebo>
+
+    <m_joint name="${l4}_${l5}" type="revolute" origin_rpy="0 0 0" origin_xyz="0 0 0.8"
+             parent="${l4}" child="${l5}" axis="0 0 1" limite="1000" limitl="-3.14" 
+             limitu="3.14" limitv="0.5"/>
+
+    <m_link_cylinder name="${l5}" origin_rpy="0 0 0" origin_xyz="0 0 0.125" mass="18.056"
+                     ixx="0.479" ixy="0" ixz="0" iyy="0.479" iyz="0" izz="0.204"
+                     radius="0.15" length="0.25" color="blue"/>
+    <gazebo reference="${l5}">
+        <material>Gazebo/Red</material>
+    </gazebo>
+
+    <gazebo>
+        <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so" />
+    </gazebo>
+
+</robot>
